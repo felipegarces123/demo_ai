@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.UUID,
+import java.util.UUID;
 
 public class Comment {
   public String id, username, body;
