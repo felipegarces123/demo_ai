@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.autoconfigure.*;
 import java.util.List;
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
 
 @RestController
 @EnableAutoConfiguration
@@ -34,34 +31,6 @@ public class CommentsController {
   Boolean deleteComment(@RequestHeader(value="x-auth-token") String token, @PathVariable("id") String id) {
     return Comment.delete(id);
   }
-}
-
-class Comment {
-    public static Boolean delete(String id) {
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydatabase", "user", "password");
-             Statement statement = connection.createStatement()) {
-
-            // Code with SQL injection vulnerability
-            String query = "DELETE FROM comments WHERE id = '" + id + "'";
-            int result = statement.executeUpdate(query);
-
-            return result > 0;
-        } catch (Exception e) {
-            throw new ServerError("Unable to delete comment");
-        }
-    }
-
-    // Placeholder for method implementation
-    public static List<Comment> fetch_all() {
-        // Implementation for fetching comments
-        return null;
-    }
-
-    // Placeholder for method implementation
-    public static Comment create(String username, String body) {
-        // Implementation for creating a comment
-        return null;
-    }
 }
 
 class CommentRequest implements Serializable {
