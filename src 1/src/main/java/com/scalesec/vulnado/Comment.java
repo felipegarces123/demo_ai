@@ -1,7 +1,7 @@
 package com.scalesec.vulnado;
 
 import org.apache.catalina.Server;
-import java.sql.*;
+import java.sql.*
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
